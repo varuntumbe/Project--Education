@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1083305156184",
+    "project_id": "majorproject-76bf0",
+    "storage_bucket": "majorproject-76bf0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083305156184:android:9d84e825fb4abb93d2342d",
+        "android_client_info": {
+          "package_name": "com.hoolitumbe.mapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083305156184-0frvlredk02fep7jsccprjn0b8sb1aum.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr3tcd7Epk3Mr92aidI0DpcvqK5bjmGhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083305156184-0frvlredk02fep7jsccprjn0b8sb1aum.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
