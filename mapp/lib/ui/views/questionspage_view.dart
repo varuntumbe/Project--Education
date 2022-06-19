@@ -150,6 +150,8 @@ class _QuestionspageViewState extends State<QuestionspageView> {
                         child: Text('GForm'),
                         onPressed: () {
                           print('pressed');
+                          Navigator.pushNamed(context, 'googleformflow',
+                              arguments: model.exportListOfQuestions());
                         },
                       ),
                     ),

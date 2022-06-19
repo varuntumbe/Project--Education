@@ -145,7 +145,7 @@ class HomeView extends StatelessWidget {
                                 arguments: extractedText);
                           },
                           child: Text(
-                            'Get Mcqs',
+                            'Get Questions',
                             style: TextStyle(color: Colors.white),
                           ),
                         ),

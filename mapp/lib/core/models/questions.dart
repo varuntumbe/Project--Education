@@ -22,6 +22,12 @@ class QuestionObj {
     if (jsonObj['options']) this.questionOptions = jsonObj['options'];
   }
 
+  QuestionObj.fromString(questionText) {
+    this.questionText = questionText;
+    this.questionDescription = 'temparory description';
+    this.questiontype = QuestionType.SimpleQuestion;
+  }
+
   Map<String, String> convertToJsonObj() {
     return {
       'questionType': 'FIB',

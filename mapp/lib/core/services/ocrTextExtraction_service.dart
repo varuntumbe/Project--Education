@@ -19,6 +19,8 @@ class OcrImplService {
     }
 
     extractedText = this.convertMapOfTextToString(extractedTextMap);
+    print('extracted text');
+    print(extractedText);
     return extractedText;
   }
 
@@ -39,6 +41,8 @@ class OcrImplService {
     for (String key in extractedTextMap.keys) {
       result = result + extractedTextMap[key];
     }
+    print('result: ');
+    print(result);
     return result;
   }
 }

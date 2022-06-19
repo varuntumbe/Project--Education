@@ -46,6 +46,22 @@ Widget myAppDrawer() {
             ),
           ),
         ),
+        GestureDetector(
+          onTap: () {
+            print('pressed');
+          },
+          child: Container(
+            padding: EdgeInsets.all(5),
+            height: 50,
+            decoration: BoxDecoration(
+                color: Colors.blueAccent[100],
+                borderRadius: BorderRadius.circular(25)),
+            alignment: Alignment.center,
+            child: Center(
+              child: Text('Get All Google Forms'),
+            ),
+          ),
+        ),
       ],
     ),
   );

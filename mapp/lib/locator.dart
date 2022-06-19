@@ -4,11 +4,13 @@ import 'package:get_it/get_it.dart';
 import 'package:mapp/core/services/authentication_service.dart';
 import 'package:mapp/core/services/ocrTextExtraction_service.dart';
 import 'package:mapp/core/services/questionGeneration_service.dart';
+import 'package:mapp/core/viewmodel/gform_model.dart';
 import 'package:mapp/core/viewmodel/homeview_model.dart';
 import 'package:mapp/core/viewmodel/loginview_model.dart';
 import 'package:mapp/core/viewmodel/questionpage_model.dart';
 import 'package:mapp/core/viewmodel/signupview_model.dart';
 import 'package:mapp/core/viewmodel/startupview_model.dart';
+import 'package:mapp/core/viewmodel/viewgoogleform_model.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -18,6 +20,8 @@ void setupLocator() {
   locator.registerFactory(() => SignUpViewModel());
   locator.registerFactory(() => LogInViewModel());
   locator.registerFactory(() => StartUpViewModel());
+  locator.registerFactory(() => GformWebViewFlowModel());
+  locator.registerFactory(() => ViewGoogleFormsModel());
 
   locator.registerLazySingleton(() => AuthenticationService());
   locator.registerLazySingleton(() => FirestoreService());

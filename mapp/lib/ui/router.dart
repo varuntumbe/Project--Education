@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mapp/ui/views/gform_view.dart';
 import 'package:mapp/ui/views/questionspage_view.dart';
 import 'package:mapp/ui/views/signup_view.dart';
 import 'package:mapp/ui/views/startup_view.dart';
+import 'package:mapp/ui/views/viewgoogleforms_view.dart';
 import 'views/home_view.dart';
 import 'views/login_view.dart';
 
@@ -22,6 +24,13 @@ class RouterGen {
             extractedText: settings.arguments,
           ),
         );
+      case 'googleformflow':
+        return MaterialPageRoute(
+            builder: (_) => GformWebViewFlow(
+                  httpPayload: settings.arguments,
+                ));
+      case 'viewgoogleforms':
+        return MaterialPageRoute(builder: (_) => ViewGoogleForms());
       case 'error':
         return MaterialPageRoute(
             builder: (_) => Scaffold(body: Center(child: Text('error'))));

@@ -40,6 +40,8 @@ dependencies:
   read_pdf_text: ^0.2.1
   image_picker: any
   path: any
+  http: any
+  webview_flutter: any
 
 dev_dependencies:
   flutter_test:
