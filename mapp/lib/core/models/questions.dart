@@ -7,19 +7,22 @@ class QuestionObj {
   String questionDescription;
   List<String> questionOptions;
   QuestionType questiontype;
+  List<String> answers;
 
   //basic constructor
   QuestionObj(
       {@required this.questionText,
       this.questionDescription,
       this.questionOptions,
-      @required this.questiontype});
+      @required this.questiontype,
+      this.answers});
 
   QuestionObj.fromJson(jsonObj) {
     this.questionText = jsonObj['question'];
-    if (jsonObj['description'])
-      this.questionDescription = jsonObj['description'];
-    if (jsonObj['options']) this.questionOptions = jsonObj['options'];
+    // if (jsonObj['description'])
+    //   this.questionDescription = jsonObj['description'];
+    this.questiontype = QuestionType.SimpleQuestion;
+    this.answers = jsonObj['answer'].split(',');
   }
 
   QuestionObj.fromString(questionText) {

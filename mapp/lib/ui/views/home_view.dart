@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
     return BaseView<HomeViewModel>(
       builder: (context, model, child) => Scaffold(
         appBar: myAppBar('AQG'),
-        drawer: myAppDrawer(),
+        drawer: myAppDrawer(context),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

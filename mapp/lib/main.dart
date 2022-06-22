@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'locator.dart';
 import './ui/router.dart';
 import 'ui/shared/text_styles.dart';
+import 'custom_error_handling_view.dart';
 
 void main() async {
   setupLocator();
@@ -40,6 +41,13 @@ class MyApp extends StatelessWidget {
           textTheme: appbarWideTextTheme,
         ),
       ),
+      builder: (BuildContext context, Widget widget) {
+        ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+          return CustomError(errorDetails: errorDetails);
+        };
+
+        return widget;
+      },
       home: StartUpView(),
       initialRoute: 'startup',
       onGenerateRoute: RouterGen.generateRoute,

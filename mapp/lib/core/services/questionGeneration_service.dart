@@ -7,8 +7,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class QuestionGenerationService {
-  String serverUrl =
-      'https://25d8-2409-4071-d1b-2153-7464-e63-fe5d-be65.in.ngrok.io/send';
+  String serverUrl = 'https://6133-106-51-243-177.in.ngrok.io/sendQuestions';
 
   Future<List<QuestionObj>> generateQuestions({@required extractedText}) async {
     List<QuestionObj> fakeGenQuestions = [
@@ -63,10 +62,10 @@ class QuestionGenerationService {
       print(resbody);
 
       List<dynamic> resultRes = jsonDecode(resbody);
-      List<String> resultQuestions = new List.from(resultRes);
+      List<Map<String, dynamic>> resultQuestions = new List.from(resultRes);
 
       resultQuestions.forEach((question) {
-        fetchedQuestions.add(QuestionObj.fromString(question));
+        fetchedQuestions.add(QuestionObj.fromJson(question));
       });
 
       return fetchedQuestions;

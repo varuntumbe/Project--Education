@@ -7,7 +7,7 @@ import 'base_model.dart';
 class GformWebViewFlowModel extends BaseModel {
   String webViewurl;
   String googleFormGenServiceurl =
-      'https://c2db-2405-201-d026-4864-9818-d23d-60c-397f.in.ngrok.io/generate_form';
+      'https://455d-36-255-86-139.in.ngrok.io/generate_form';
 
   Future<String> sendPostReqAndGetRedirectedUrl(String payLoad) async {
     //return Future.delayed(Duration(seconds: 5), () => 'https://flutter.dev');
@@ -20,9 +20,9 @@ class GformWebViewFlowModel extends BaseModel {
       body: payLoad,
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print(jsonDecode(response.body)['oauth_url']);
+      print(jsonDecode(response.body)['url']);
 
-      return jsonDecode(response.body)['oauth_url'];
+      return jsonDecode(response.body)['url'];
     } else {
       throw Exception('Failed to Fetch redirection Url');
     }

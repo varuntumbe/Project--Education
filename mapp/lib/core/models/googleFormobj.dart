@@ -5,5 +5,14 @@ class GoogleFormObj {
   String formName;
   String formCreatedAt;
 
-  GoogleFormObj({@required formLink, @required formName});
+  GoogleFormObj(
+      {@required this.formLink, @required this.formName, this.formCreatedAt});
+
+  GoogleFormObj.fromJson(jsonObj) {
+    this.formLink = jsonObj['link'];
+    //this.formLink = this.formLink.replaceAll('viewform', 'edit');
+
+    this.formName = jsonObj['title'];
+    this.formCreatedAt = jsonObj['createdAt'];
+  }
 }

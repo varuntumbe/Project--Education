@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mapp/core/enums.dart';
 import 'package:mapp/core/models/questions.dart';
+import 'package:mapp/core/services/authentication_service.dart';
 import 'package:mapp/core/services/questionGeneration_service.dart';
 import 'package:mapp/core/viewmodel/base_model.dart';
 import '../../app_constants.dart';
@@ -11,6 +12,8 @@ import '../../locator.dart';
 class QuestionPageModel extends BaseModel {
   final QuestionGenerationService _questionGenerationservice =
       locator<QuestionGenerationService>();
+  final AuthenticationService _authenticationService =
+      locator<AuthenticationService>();
 
   //one of the state of this screen is List of Question object
   List<QuestionObj> generatedQuestions =
@@ -40,30 +43,23 @@ class QuestionPageModel extends BaseModel {
 
   String exportListOfQuestions() {
     Map<String, dynamic> payLoadData = jsonDecode(payLoadStructure);
+    payLoadData["email"] = _authenticationService.currentUser.email.toString();
     Map<String, dynamic> mcqQuestionStructure =
         jsonDecode(multipleChoiceQuestion);
-    //Map<String, dynamic> paragraphAnsStructure = jsonDecode(paragraphQuestion);
-
-    //adding our question content to this structure
-    // var index = 0;
-    // print('index');
-    // print(index);
-    // generatedQuestions.forEach((questionObj) {
-    //   // if (questionObj.questiontype == QuestionType.SimpleQuestion) {
-
-    //   index += 1;
-    //   // }
-    // });
-
-    print('generatedQuestions');
-    print(generatedQuestions);
-    print('paragraphStruture');
     for (var i = 0; i < generatedQuestions.length; i++) {
       Map<String, dynamic> paragraphAnsStructure =
           jsonDecode(paragraphQuestion);
       paragraphAnsStructure['createItem']['location']['index'] = i;
       paragraphAnsStructure['createItem']['item']['title'] =
           generatedQuestions[i].questionText;
+
+      //setting answers
+      for (var j = 0; j < generatedQuestions[i].answers.length; j++) {
+        print(generatedQuestions[i].answers[j]);
+        paragraphAnsStructure['createItem']['item']['questionItem']['question']
+                ['grading']['correctAnswers']['answers']
+            .add({'value': generatedQuestions[i].answers[j]});
+      }
 
       payLoadData['form_body']['requests'].add(paragraphAnsStructure);
     }

@@ -11,7 +11,7 @@ Widget myAppBar(title) => AppBar(
     );
 
 //creating a AppWide One Drawer
-Widget myAppDrawer() {
+Widget myAppDrawer(context) {
   AuthenticationService _authenticationService =
       locator<AuthenticationService>();
   User currentUser = _authenticationService.currentUser;
@@ -49,6 +49,7 @@ Widget myAppDrawer() {
         GestureDetector(
           onTap: () {
             print('pressed');
+            Navigator.pushNamed(context, 'allGoogleFormsCreatedByuser');
           },
           child: Container(
             padding: EdgeInsets.all(5),

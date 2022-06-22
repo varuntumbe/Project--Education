@@ -39,7 +39,7 @@ class _QuestionspageViewState extends State<QuestionspageView> {
       },
       builder: (context, model, child) => Scaffold(
         appBar: myAppBar('AQG'),
-        drawer: myAppDrawer(),
+        drawer: myAppDrawer(context),
         body: model.state == ViewState.Busy
             ? Container(
                 child: CircularProgressIndicator(),

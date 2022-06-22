@@ -21,7 +21,7 @@ class _GformWebViewFlowState extends State<GformWebViewFlow> {
     }, builder: (context, model, child) {
       return Scaffold(
           appBar: myAppBar('AQG'),
-          drawer: myAppDrawer(),
+          drawer: myAppDrawer(context),
           body: Container(
             child: model.state == ViewState.Busy
                 ? Center(
