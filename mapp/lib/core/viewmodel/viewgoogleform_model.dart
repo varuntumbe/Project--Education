@@ -8,7 +8,8 @@ import 'base_model.dart';
 import 'package:flutter/services.dart';
 
 class ViewGoogleFormsModel extends BaseModel {
-  String viewGoogleFormEndpoint = '455d-36-255-86-139.in.ngrok.io';
+  String viewGoogleFormEndpoint =
+      '1fc8-2405-204-5682-22da-45a7-70f0-91c-fe94.in.ngrok.io';
   List<GoogleFormObj> allGoogleFormsCreatedByuser = [];
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();

@@ -4,6 +4,7 @@ import 'package:mapp/core/viewmodel/questionpage_model.dart';
 import 'package:mapp/ui/shared/shared_styles.dart';
 import 'package:mapp/ui/views/base_view.dart';
 import 'package:mapp/ui/widgets/appbar_drawer.dart';
+import 'package:mapp/ui/widgets/textInputDialouge.dart';
 
 class QuestionspageView extends StatefulWidget {
   final String extractedText;
@@ -148,10 +149,18 @@ class _QuestionspageViewState extends State<QuestionspageView> {
                       child: ElevatedButton(
                         style: elevatedButtonStyle,
                         child: Text('GForm'),
-                        onPressed: () {
+                        onPressed: () async {
                           print('pressed');
-                          Navigator.pushNamed(context, 'googleformflow',
-                              arguments: model.exportListOfQuestions());
+                          // Navigator.pushNamed(context, 'googleformflow',
+                          //     arguments: model.exportListOfQuestions());
+                          TextEditingController controller =
+                              TextEditingController();
+                          controller.text = 'class Test';
+                          await displayTextInputDialog(
+                              context, controller, model.exportListOfQuestions);
+                          // Navigator.pushNamed(context, 'googleformflow',
+                          //     arguments:
+                          //         model.exportListOfQuestions(controller.text));
                         },
                       ),
                     ),

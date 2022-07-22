@@ -7,24 +7,33 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class QuestionGenerationService {
-  String serverUrl = 'https://6133-106-51-243-177.in.ngrok.io/sendQuestions';
+  String serverUrl =
+      'https://fbf8-2405-204-5682-22da-4d0-d249-5c98-528b.in.ngrok.io/sendQuestionAnswers';
 
   Future<List<QuestionObj>> generateQuestions({@required extractedText}) async {
     List<QuestionObj> fakeGenQuestions = [
       QuestionObj(
-          questionText: 'Who is the president of India ?',
-          questiontype: QuestionType.SimpleQuestion),
+        questionText: 'Who is the president of India ?',
+        questiontype: QuestionType.SimpleQuestion,
+        answers: ['hh', 'kk'],
+      ),
       QuestionObj(
-          questionText: 'What is the capital of Karnataka ?',
-          questiontype: QuestionType.MultiChoiceQuestion,
-          questionOptions: ['Banglore', 'Mysore', 'Kolkotta', 'Bangladesh']),
+        questionText: 'What is the capital of Karnataka ?',
+        questiontype: QuestionType.MultiChoiceQuestion,
+        questionOptions: ['Banglore', 'Mysore', 'Kolkotta', 'Bangladesh'],
+        answers: ['hh', 'kk'],
+      ),
       QuestionObj(
-          questionText: '____ is the prime minister of India',
-          questiontype: QuestionType.FillInTheBlanksQuestion),
+        questionText: '____ is the prime minister of India',
+        questiontype: QuestionType.FillInTheBlanksQuestion,
+        answers: ['hh', 'kk'],
+      ),
       QuestionObj(
-          questionText: 'Explain the process of tilling in agriculture',
-          questiontype: QuestionType.SimpleQuestion,
-          questionDescription: 'write about 10-20 lines')
+        questionText: 'Explain the process of tilling in agriculture',
+        questiontype: QuestionType.SimpleQuestion,
+        questionDescription: 'write about 10-20 lines',
+        answers: ['hh', 'kk'],
+      )
     ];
     return new Future.delayed(
         const Duration(seconds: 5), () => fakeGenQuestions);

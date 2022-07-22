@@ -7,7 +7,7 @@ import 'base_model.dart';
 class GformWebViewFlowModel extends BaseModel {
   String webViewurl;
   String googleFormGenServiceurl =
-      'https://455d-36-255-86-139.in.ngrok.io/generate_form';
+      'https://1fc8-2405-204-5682-22da-45a7-70f0-91c-fe94.in.ngrok.io/generate_form';
 
   Future<String> sendPostReqAndGetRedirectedUrl(String payLoad) async {
     //return Future.delayed(Duration(seconds: 5), () => 'https://flutter.dev');

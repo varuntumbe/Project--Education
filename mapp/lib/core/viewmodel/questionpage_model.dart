@@ -41,11 +41,12 @@ class QuestionPageModel extends BaseModel {
     setState(ViewState.Idle);
   }
 
-  String exportListOfQuestions() {
+  String exportListOfQuestions(formName) {
     Map<String, dynamic> payLoadData = jsonDecode(payLoadStructure);
     payLoadData["email"] = _authenticationService.currentUser.email.toString();
-    Map<String, dynamic> mcqQuestionStructure =
-        jsonDecode(multipleChoiceQuestion);
+    payLoadData["info"]["title"] = formName;
+    payLoadData["info"]["documentTitle"] = formName;
+
     for (var i = 0; i < generatedQuestions.length; i++) {
       Map<String, dynamic> paragraphAnsStructure =
           jsonDecode(paragraphQuestion);
