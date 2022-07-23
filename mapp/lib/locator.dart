@@ -1,3 +1,4 @@
+import 'package:mapp/core/services/cache_service.dart';
 import 'package:mapp/core/services/database_service.dart';
 import 'package:mapp/core/services/firestoreDB_service.dart';
 import 'package:get_it/get_it.dart';
@@ -30,4 +31,5 @@ void setupLocator() {
   locator.registerLazySingleton(() => DatabaseService());
   locator.registerLazySingleton(() => OcrImplService());
   locator.registerLazySingleton(() => QuestionGenerationService());
+  locator.registerLazySingleton(() => CacheService());
 }

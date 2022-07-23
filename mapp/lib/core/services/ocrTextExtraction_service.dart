@@ -1,22 +1,46 @@
+import 'package:mapp/core/services/cache_service.dart';
+import 'package:mapp/locator.dart';
 import 'package:meta/meta.dart';
 import '../models/fileobj.dart';
 import 'package:simple_ocr_plugin/simple_ocr_plugin.dart';
 
 class OcrImplService {
-  //right now below method will be called for every on press of get-mcq
-  //have to think of optimisation
+  final CacheService _cacheService = locator<CacheService>();
+
   Future<String> extractTextFromImages(
       {@required List<FileObj> imageobjs}) async {
     if (imageobjs.length == 0) return '';
     String extractedText;
     Map<String, String> extractedTextMap = Map<String, String>();
     int imageCount = 1;
+
+    //initializing the batches
+    var batch = await _cacheService.getDbBatch();
+
     for (dynamic imgobj in imageobjs) {
-      String extractedTextFromImage =
-          await this.useSimpleOcrPlugginToExtractText(imgobj);
+      //looking for cached Extracted Text
+      String cachedResult =
+          await _cacheService.checkWhetherCached(imgobj.getFilepath);
+
+      String extractedTextFromImage;
+      if (cachedResult == "NONE") {
+        extractedTextFromImage =
+            await this.useSimpleOcrPlugginToExtractText(imgobj);
+
+        //caching the text here..( but best way is to batch all the writes )
+        _cacheService.cachingByWritingToDb(
+            imgobj.getFilepath, extractedTextFromImage, batch);
+      } else {
+        print('caching is working...\n\n');
+        extractedTextFromImage = cachedResult;
+      }
+
       extractedTextMap["$imageCount"] = extractedTextFromImage;
       imageCount += 1;
     }
+
+    //writing all the batched inserts ( preferably in separate isolate )
+    _cacheService.dbBatchCommit(batch);
 
     extractedText = this.convertMapOfTextToString(extractedTextMap);
     print('extracted text');

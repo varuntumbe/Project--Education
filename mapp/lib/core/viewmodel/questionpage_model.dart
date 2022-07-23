@@ -23,7 +23,7 @@ class QuestionPageModel extends BaseModel {
       {@required String extractedText}) async {
     setState(ViewState.Busy);
     List<QuestionObj> generatedQuestions = await _questionGenerationservice
-        .generateQuestions2(extractedText: extractedText);
+        .generateQuestions(extractedText: extractedText);
     this.generatedQuestions = generatedQuestions;
     setState(ViewState.Idle);
   }
