@@ -21,11 +21,13 @@ class ViewGoogleFormsModel extends BaseModel {
       GoogleFormObj(
           formLink:
               'https://docs.google.com/forms/d/1ztLCam_9XLgJW6c65Uqam1Ld3QiMsSQdQ8uTeWngFks/edit',
-          formName: 'class test for 10th'),
+          formName: 'class test for 10th',
+          formCreatedAt: '12-02-2020'),
       GoogleFormObj(
           formLink:
               'https://docs.google.com/forms/d/1oljpAbDPLOQrKBl3gksLNp2Lbb4ayVJpdPhwyfNerBY/edit',
-          formName: 'class test for 2'),
+          formName: 'class test for 2',
+          formCreatedAt: '12-02-2020'),
     ];
 
     List<GoogleFormObj> googleforms =
@@ -35,7 +37,6 @@ class ViewGoogleFormsModel extends BaseModel {
   }
 
   void fetchAllGoogleForms() async {
-    //mocking the endpoint
     setState(ViewState.Busy);
     Map<String, String> queryParams = {
       'email': _authenticationService.currentUser.email.toString(),

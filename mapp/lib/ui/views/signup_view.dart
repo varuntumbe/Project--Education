@@ -16,12 +16,12 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height, width;
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
+    // double height, width;
+    // height = MediaQuery.of(context).size.height;
+    // width = MediaQuery.of(context).size.width;
 
-    print('height : ' + height.toString());
-    print('width : ' + width.toString());
+    // print('height : ' + height.toString());
+    // print('width : ' + width.toString());
     return BaseView<SignUpViewModel>(
       builder: (context, model, child) => ResponsiveSizer(
         builder: (
