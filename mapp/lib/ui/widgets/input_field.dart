@@ -14,12 +14,12 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5.0),
+      padding: EdgeInsets.all(3.0),
       child: TextFormField(
         validator: validate,
         controller: controller,
-        maxLength: 50,
-        maxLines: 2,
+        maxLength: 100,
+        maxLines: 1,
         decoration: InputDecoration(
           hoverColor: Colors.blueAccent,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),

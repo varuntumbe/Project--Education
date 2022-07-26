@@ -97,9 +97,14 @@ class HomeView extends StatelessWidget {
                           Expanded(
                             child: model.selectedFilesList[index].isPdf
                                 ? Center(
-                                    child: Icon(
-                                      Icons.picture_as_pdf_rounded,
-                                      size: 50,
+                                    child: SizedBox.fromSize(
+                                      size: Size.fromRadius(25),
+                                      child: FittedBox(
+                                        child: Icon(
+                                          Icons.picture_as_pdf_rounded,
+                                          //       size: 50,
+                                        ),
+                                      ),
                                     ),
                                   )
                                 : Image.file(
@@ -138,18 +143,30 @@ class HomeView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             GestureDetector(
-                              child: Icon(
-                                Icons.camera,
-                                size: 60.0,
+                              child: Container(
+                                child: SizedBox.fromSize(
+                                  size: Size.fromRadius(30),
+                                  child: FittedBox(
+                                    child: Icon(
+                                      Icons.camera,
+                                      //size: 60.0,
+                                    ),
+                                  ),
+                                ),
                               ),
                               onTap: () {
                                 model.captureImageFromCamera();
                               },
                             ),
                             GestureDetector(
-                              child: Icon(
-                                Icons.folder,
-                                size: 60.0,
+                              child: SizedBox.fromSize(
+                                size: Size.fromRadius(30),
+                                child: FittedBox(
+                                  child: Icon(
+                                    Icons.folder,
+                                    //size: 60.0,
+                                  ),
+                                ),
                               ),
                               onTap: () {
                                 model.selectImages();

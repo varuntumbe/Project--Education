@@ -31,95 +31,119 @@ class SignUpView extends StatelessWidget {
         ) =>
             Scaffold(
           appBar: myAppBar('mapp'),
-          body: Container(
-            padding:
-                EdgeInsets.symmetric(vertical: 1.24.h, horizontal: 02.54.w),
-            child: Form(
-              key: _formKey2,
-              child: ListView(
-                children: [
-                  //UIHelper.verticalSpace(150),
-                  UIHelper.verticalSpace(18.665.h),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Sign Up',
-                      style: signInSingUpTextStyle,
+          body: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.blue, Colors.purple],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight),
+                ),
+              ),
+              Center(
+                child: LayoutBuilder(
+                  builder: (ctx, cnst) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.white,
                     ),
-                  ),
-                  UIHelper.verticalSpace(2.48.h),
-                  InputField(
-                    controller: nameController,
-                    hintText: 'Name',
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return "Name cant be Empty";
-                      }
-                      return null;
-                    },
-                  ),
-                  UIHelper.verticalSpace(1.244.h),
-                  InputField(
-                    controller: emailController,
-                    hintText: 'Email',
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return "Email cant be Empty";
-                      }
-                      return null;
-                    },
-                  ),
-                  UIHelper.verticalSpace(1.244.h),
-                  InputField(
-                      controller: passwordController,
-                      hintText: 'Password',
-                      validate: (value) {
-                        if (value.isEmpty) {
-                          return "Password cant be Empty";
-                        }
-                        return null;
-                      }),
-                  UIHelper.verticalSpace(1.244.h),
-                  Container(
-                    padding: EdgeInsets.only(left: 30.55.w, right: 30.55.w),
-                    child: model.state == ViewState.Idle
-                        ? ElevatedButton(
-                            child: Text('submit'),
-                            onPressed: () async {
-                              if (_formKey2.currentState.validate()) {
-                                var result = await model.signUp(
-                                    name: nameController.text,
-                                    email: emailController.text,
-                                    password: passwordController.text,
-                                    context: context);
-                                if (result != bool) {
-                                  model.setState(ViewState.Idle);
-                                }
-                              }
-                            },
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Colors.grey),
-                                ),
-                              ),
-                            ),
-                          )
-                        : SizedBox(
-                            height: 2.488.h,
-                            width: 5.09.w,
-                            child: Center(
-                              child: CircularProgressIndicator(
-                                strokeWidth: 5.0,
-                              ),
+                    padding: EdgeInsets.symmetric(
+                        vertical: 1.24.h, horizontal: 02.54.w),
+                    height: 50.h,
+                    width: 87.w,
+                    child: Form(
+                      key: _formKey2,
+                      child: Column(
+                        children: [
+                          //UIHelper.verticalSpace(150),
+                          UIHelper.verticalSpace(0.5.h),
+                          Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Sign Up',
+                              style: signInSingUpTextStyle,
                             ),
                           ),
+                          UIHelper.verticalSpace(0.2.h),
+                          InputField(
+                            controller: nameController,
+                            hintText: 'Name',
+                            validate: (value) {
+                              if (value.isEmpty) {
+                                return "Name cant be Empty";
+                              }
+                              return null;
+                            },
+                          ),
+                          UIHelper.verticalSpace(0.2.h),
+                          InputField(
+                            controller: emailController,
+                            hintText: 'Email',
+                            validate: (value) {
+                              if (value.isEmpty) {
+                                return "Email cant be Empty";
+                              }
+                              return null;
+                            },
+                          ),
+                          UIHelper.verticalSpace(0.2.h),
+                          InputField(
+                              controller: passwordController,
+                              hintText: 'Password',
+                              validate: (value) {
+                                if (value.isEmpty) {
+                                  return "Password cant be Empty";
+                                }
+                                return null;
+                              }),
+                          UIHelper.verticalSpace(0.544.h),
+                          Container(
+                            padding:
+                                EdgeInsets.only(left: 30.55.w, right: 30.55.w),
+                            child: model.state == ViewState.Idle
+                                ? ElevatedButton(
+                                    child: Text('submit'),
+                                    onPressed: () async {
+                                      if (_formKey2.currentState.validate()) {
+                                        var result = await model.signUp(
+                                            name: nameController.text,
+                                            email: emailController.text,
+                                            password: passwordController.text,
+                                            context: context);
+                                        if (result != bool) {
+                                          model.setState(ViewState.Idle);
+                                        }
+                                      }
+                                    },
+                                    style: ButtonStyle(
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(18.0),
+                                          side: BorderSide(color: Colors.grey),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : SizedBox(
+                                    height: 2.488.h,
+                                    width: 5.09.w,
+                                    child: Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 5.0,
+                                      ),
+                                    ),
+                                  ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

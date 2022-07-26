@@ -26,22 +26,30 @@ class StartUpView extends StatelessWidget {
           screenType,
         ) =>
             Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SizedBox(
-                  width: 76.38.w,
-                  height: 12.443.h,
-                  child: CircleAvatar(
-                    child: Text('AQG'),
+          body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.blue, Colors.purple],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight),
+            ),
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  SizedBox(
+                    width: 76.38.w,
+                    height: 12.443.h,
+                    child: CircleAvatar(
+                      child: Text('AQG'),
+                    ),
                   ),
-                ),
-                CircularProgressIndicator(
-                  strokeWidth: 3,
-                  valueColor: AlwaysStoppedAnimation(Color(0xff19c7c1)),
-                )
-              ],
+                  CircularProgressIndicator(
+                    strokeWidth: 3,
+                    valueColor: AlwaysStoppedAnimation(Color(0xff19c7c1)),
+                  )
+                ],
+              ),
             ),
           ),
         ),

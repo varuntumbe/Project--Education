@@ -36,9 +36,12 @@ Widget myAppDrawer(context) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    child: FaIcon(
-                      FontAwesomeIcons.user,
-                      size: 30.0,
+                    child: SizedBox.fromSize(
+                      size: Size.fromRadius(12),
+                      child: FaIcon(
+                        FontAwesomeIcons.user,
+                        //size: 30.0,
+                      ),
                     ),
                   ),
                   Text('Hello ${currentUser.fullName}'),

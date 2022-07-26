@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mapp/core/enums.dart';
+import 'package:mapp/core/models/failureObj.dart';
 import 'package:mapp/core/models/questions.dart';
 import 'package:mapp/core/services/authentication_service.dart';
 import 'package:mapp/core/services/questionGeneration_service.dart';
@@ -21,11 +22,16 @@ class QuestionPageModel extends BaseModel {
 
   void generateQuestionsUsingNLPService(
       {@required String extractedText}) async {
-    setState(ViewState.Busy);
-    List<QuestionObj> generatedQuestions = await _questionGenerationservice
-        .generateQuestions(extractedText: extractedText);
-    this.generatedQuestions = generatedQuestions;
-    setState(ViewState.Idle);
+    try {
+      setState(ViewState.Busy);
+      List<QuestionObj> generatedQuestions = await _questionGenerationservice
+          .generateQuestions(extractedText: extractedText);
+      this.generatedQuestions = generatedQuestions;
+      setState(ViewState.Idle);
+    } catch (e) {
+      this.error_message = e.toString();
+      setState(ViewState.Error);
+    }
   }
 
   void changeIseditingProperty(int index) {

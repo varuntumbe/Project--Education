@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:mapp/core/enums.dart';
 import 'package:http/http.dart' as http;
+import 'package:mapp/core/models/failureObj.dart';
 import 'package:mapp/core/models/googleFormobj.dart';
 import 'package:mapp/core/services/authentication_service.dart';
 import 'package:mapp/locator.dart';
@@ -30,10 +32,11 @@ class ViewGoogleFormsModel extends BaseModel {
           formCreatedAt: '12-02-2020'),
     ];
 
-    List<GoogleFormObj> googleforms =
-        await Future.delayed(Duration(seconds: 5), () => allGoogleForms);
-    this.allGoogleFormsCreatedByuser = googleforms;
-    setState(ViewState.Idle);
+    // List<GoogleFormObj> googleforms =
+    //     await Future.delayed(Duration(seconds: 5), () => allGoogleForms);
+    // this.allGoogleFormsCreatedByuser = googleforms;
+    this.error_message = 'internet Failure';
+    setState(ViewState.Error);
   }
 
   void fetchAllGoogleForms() async {
@@ -49,27 +52,42 @@ class ViewGoogleFormsModel extends BaseModel {
       queryParameters: queryParams,
     );
 
-    final response = await http.get(
-      uri,
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Connection': 'keep-alive'
-      },
-    );
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      print(jsonDecode(response.body));
+    try {
+      final response = await http.get(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Connection': 'keep-alive'
+        },
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(jsonDecode(response.body));
 
-      List<dynamic> allformRes = jsonDecode(response.body);
-      List<GoogleFormObj> allformsResGoogleObjs = [];
-      allformRes.forEach((obj) {
-        allformsResGoogleObjs.add(GoogleFormObj.fromJson(obj));
-      });
+        List<dynamic> allformRes = jsonDecode(response.body);
+        List<GoogleFormObj> allformsResGoogleObjs = [];
+        allformRes.forEach((obj) {
+          allformsResGoogleObjs.add(GoogleFormObj.fromJson(obj));
+        });
 
-      this.allGoogleFormsCreatedByuser = allformsResGoogleObjs;
-    } else {
-      throw Exception('Failed to Fetch redirection Url');
+        this.allGoogleFormsCreatedByuser = allformsResGoogleObjs;
+      } else {
+        throw Failure('Failed to fetch google forms infos');
+      }
+      setState(ViewState.Idle);
+    } on SocketException catch (_) {
+      print(_);
+
+      this.error_message = 'No Internet connection 😑';
+      setState(ViewState.Error);
+    } on HttpException catch (_) {
+      print(_);
+      this.error_message = 'Something went wrong in fetching question';
+      setState(ViewState.Error);
+    } catch (_) {
+      print(_);
+      this.error_message = 'unhandled Exception';
+      setState(ViewState.Error);
     }
-    setState(ViewState.Idle);
   }
 
   void copyToClipBoard(formLink) {
